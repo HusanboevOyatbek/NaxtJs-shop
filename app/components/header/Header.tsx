@@ -5,18 +5,18 @@ import { IoCartOutline, IoPersonCircleOutline } from "react-icons/io5"
 function Header() {
   return (
     <header className="fixed top-0 left-0 w-full bg-white shadow-sm z-50">
-      <div className="container mx-auto px-5 h-[80px] flex items-center justify-between gap-6">
+      <div className="container mx-auto px-5 h-[60px] md:h-[80px] flex items-center justify-between gap-3 md:gap-6">
 
         {/* LOGO */}
         <Link
           href="/"
-          className="text-black font-extrabold text-3xl whitespace-nowrap"
+          className="text-black font-extrabold text-xl md:text-3xl whitespace-nowrap"
         >
           SHOP.CO
         </Link>
 
         {/* NAV */}
-        <ul className="flex items-center gap-6">
+        <ul className="hidden md:flex items-center gap-6">
           <li>
             <select className="outline-none px-4 py-2 bg-white  rounded-xl text-sm cursor-pointer hover:border-orange-400 transition">
               <option>Shop</option>
@@ -65,14 +65,14 @@ function Header() {
         </form>
 
         {/* ICONS */}
-        <div className="flex items-center gap-4">
-          <Link href={"cart"}> 
+        <div className="flex items-center gap-3 md:gap-4">
+          <Link href={"cart"}>
 
-          <IoCartOutline className="w-[26px] h-[26px] cursor-pointer hover:text-orange-500 transition" />
-          
+            <IoCartOutline className="w-5 md:w-[26px] h-5 md:h-[26px] cursor-pointer hover:text-orange-500 transition" />
+
           </Link>
 
-          <IoPersonCircleOutline className="w-[28px] h-[28px] cursor-pointer hover:text-orange-500 transition" />
+          <IoPersonCircleOutline className="w-5 md:w-[28px] h-5 md:h-[28px] cursor-pointer hover:text-orange-500 transition" />
         </div>
 
       </div>

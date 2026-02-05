@@ -5,7 +5,6 @@ import Style3 from "./assets/styleP3.png"
 import Style4 from "./assets/style4.png"
 import Reating from "./assets/reating.png"
 import Galichka from "./assets/galichka.png"
-
 import Fragment1 from "./assets/Frame 32 (1).png"
 import Fragment2 from "./assets/Frame 33.png"
 import Fragment3 from "./assets/Frame 34.png"
@@ -13,13 +12,100 @@ import Fragment4 from "./assets/Frame 38.png"
 import topshop from "./assets/topShop.png"
 import star from "./assets/star.png"
 import Image from "next/image";
+import Link from "next/link"
+import { Bebas_Neue, Crimson_Text, Jaro, Noto_Sans_Inscriptional_Pahlavi, Noto_Sans_Psalter_Pahlavi, Oswald, Playfair_Display_SC, Playwrite_AU_NSW, Playwrite_AU_VIC_Guides, Playwrite_NZ, Playwrite_NZ_Guides, Playwrite_VN } from "next/font/google"
 
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////
+const data = [
+  {
+    image: Fragment1,
+    name: "T-SHIRT WITH TAPE DETAILS",
+    price: 120,
+    id: 1
+
+  },
+  {
+    image: Fragment2,
+    name: "SKINNY FIT JEANS",
+    price: 120,
+    id: 2
+
+  },
+  {
+    image: Fragment3,
+    name: "CHECKERED SHIRT",
+    price: 120,
+    id: 3
+
+  },
+  {
+    image: Fragment4,
+    name: "SLEEVE STRIPED T-SHIRT",
+    price: 120,
+    id: 4
+
+  },
+]
+
+
+
+
+const zealand = Oswald({
+  weight: "700",
+  subsets: ["latin"]
+  
+})
+
+
+const GUCCI = Playwrite_NZ({
+  weight: "400",
+
+})
+
+
+const Prada = Noto_Sans_Inscriptional_Pahlavi({
+  weight: "400",
+
+})
+
+const Calvi = Crimson_Text({
+  weight: "400",
+
+})
+
+
+const Zara = Jaro({
+  weight: "400",
+  subsets: ["latin"]
+
+})
+
+const versachi = Playfair_Display_SC({
+  weight: "400",
+  subsets: ["latin"]
+
+})
+
+
+const News = Bebas_Neue({
+  weight: "400",
+  subsets: ["latin"]
+
+})
+
+
+/////////////////////////////////////////////
 function HomePage() {
   return (
     <>
       <section>
         <div
-          className="bg-gray-100 "
+          className="bg-[#f3f0f1] "
         >
           <div
             className="
@@ -43,14 +129,15 @@ function HomePage() {
               {/* TEXT BLOCK */}
               <div className="max-w-[600px] space-y-5 lg:space-y-6">
                 <h1
-                  className="
-          text-[36px]
-          sm:text-[44px]
-          lg:text-[64px]
-          leading-[1.1]
-          font-extrabold
-          text-black
-        "
+                  className={`
+    ${zealand.className}
+    text-[36px]
+    sm:text-[44px]
+    lg:text-[64px]
+    leading-[1.1]
+    font-extrabold
+    text-black
+  `}
                 >
                   FIND CLOTHES <br />
                   THAT MATCHES <br />
@@ -106,11 +193,11 @@ function HomePage() {
                 <li className=" text-center justify-center ">
                   <div className="">
                     <h2 className="text-[32px] lg:text-[40px] font-extrabold text-black">
-                    30,000+
-                  </h2>
-                  <p className="text-gray-500 text-sm">
-                    Happy Customers
-                  </p>
+                      30,000+
+                    </h2>
+                    <p className="text-gray-500 text-sm">
+                      Happy Customers
+                    </p>
                   </div>
                 </li>
               </ul>
@@ -135,145 +222,59 @@ function HomePage() {
 
 
       <section>
-        <div className="bg-black py-6 flex justify-around items-center">
-          <div className="text-white font-bold text-3xl uppercase">VERSACE</div>
-          <div className="text-white font-bold text-3xl uppercase">ZARA</div>
-          <div className="text-white font-bold text-3xl uppercase">GUCCI</div>
-          <div className="text-white font-bold text-3xl uppercase">PRADA</div>
-          <div className="text-white font-bold text-3xl">Calvin Klein</div>
+        <div className="bg-black py-6 flex flex-wrap justify-center md:justify-around items-center gap-3 md:gap-0">
+          <div className={`${versachi.className} text-white font-bold text-lg md:text-3xl uppercase`}>VERSACE</div>
+          <div className={`${Zara.className} text-white text-lg md:text-3xl uppercase`}>ZARA</div>
+          <div className={`${GUCCI.className} text-white text-lg md:text-3xl uppercase`}>GUCCI</div>
+          <div className={`${Prada.className} text-white text-lg md:text-3xl uppercase`}>PRADA</div>
+          <div className={`${Calvi.className} text-white text-lg md:text-3xl uppercase`}>Calvin Klein</div>
         </div>
       </section>
 
 
       <section className="py-20">
         <div className="conatainer mx-auto px-5">
-          <h1 className="text-black font-bold text-6xl text-center ">
+          <h1 className={` ${News.className} text-black font-bold text-3xl sm:text-4xl lg:text-6xl text-center `}>
             NEW ARRIVALS
           </h1>
 
-          <div className="grid grid-cols-4 gap-5 *:">
-            <div className="w-[280px] bg-white rounded-2xl shadow-md hover:shadow-xl transition p-4 space-y-3">
+          <div className="overflow-x-auto pb-4 md:overflow-x-visible md:pb-0">
+            <div className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-5 md:justify-items-center mt-8 w-min md:w-full">
+              {
+                data?.map((el) => (
+                  <Link href={`/products/${el.id}`} key={el.id} className="w-[280px] bg-white rounded-2xl shadow-md hover:shadow-xl transition p-4 space-y-3 flex-shrink-0">
 
-              {/* IMAGE */}
-              <div className="w-full h-[260px] relative rounded-xl overflow-hidden bg-gray-100">
-                <Image
-                  src={Fragment1}
-                  alt="T-shirt"
-                  fill
-                  className="object-cover"
-                />
-              </div>
+                    {/* IMAGE */}
+                    <div className="w-full h-[260px] relative rounded-xl overflow-hidden bg-gray-100">
+                      <Image
+                        src={el.image || Fragment1}
+                        alt="T-shirt"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
 
-              {/* TITLE */}
-              <h2 className="font-semibold text-[16px] leading-snug text-black">
-                T-SHIRT WITH TAPE DETAILS
-              </h2>
+                    {/* TITLE */}
+                    <h2 className="font-semibold text-[16px] leading-snug text-black">
+                      {el.name}
+                    </h2>
 
-              {/* RATING */}
-              <div className="flex items-center gap-2">
-                <Image src={star} alt="star" width={90} height={18} />
-                <p className="text-[14px] text-gray-600">4.5/5</p>
-              </div>
+                    {/* RATING */}
+                    <div className="flex items-center gap-2">
+                      <Image src={star} alt="star" width={90} height={18} />
+                      <p className="text-[14px] text-gray-600">4.5/5</p>
+                    </div>
 
-              {/* PRICE */}
-              <h1 className="text-[22px] font-bold text-black">
-                $120
-              </h1>
+                    {/* PRICE */}
+                    <h1 className="text-[22px] font-bold text-black">
+                      {el.price}
+                    </h1>
 
-            </div>
-
-            <div className="w-[280px] bg-white rounded-2xl shadow-md hover:shadow-xl transition p-4 space-y-3">
-
-              {/* IMAGE */}
-              <div className="w-full h-[260px] relative rounded-xl overflow-hidden bg-gray-100">
-                <Image
-                  src={Fragment2}
-                  alt="T-shirt"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-
-              {/* TITLE */}
-              <h2 className="font-semibold text-[16px] leading-snug text-black">
-                SKINNY FIT JEANS
-              </h2>
-
-              {/* RATING */}
-              <div className="flex items-center gap-2">
-                <Image src={star} alt="star" width={90} height={18} />
-                <p className="text-[14px] text-gray-600">4.5/5</p>
-              </div>
-
-              {/* PRICE */}
-              <h1 className="text-[22px] font-bold text-black">
-                $120
-              </h1>
+                  </Link>
+                ))
+              }
 
             </div>
-
-
-            <div className="w-[280px] bg-white rounded-2xl shadow-md hover:shadow-xl transition p-4 space-y-3">
-
-              {/* IMAGE */}
-              <div className="w-full h-[260px] relative rounded-xl overflow-hidden bg-gray-100">
-                <Image
-                  src={Fragment3}
-                  alt="T-shirt"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-
-              {/* TITLE */}
-              <h2 className="font-semibold text-[16px] leading-snug text-black">
-                CHECKERED SHIRT
-              </h2>
-
-              {/* RATING */}
-              <div className="flex items-center gap-2">
-                <Image src={star} alt="star" width={90} height={18} />
-                <p className="text-[14px] text-gray-600">4.5/5</p>
-              </div>
-
-              {/* PRICE */}
-              <h1 className="text-[22px] font-bold text-black">
-                $120
-              </h1>
-
-            </div>
-
-
-            <div className="w-[280px] bg-white rounded-2xl shadow-md hover:shadow-xl transition p-4 space-y-3">
-
-              {/* IMAGE */}
-              <div className="w-full h-[260px] relative rounded-xl overflow-hidden bg-gray-100">
-                <Image
-                  src={Fragment4}
-                  alt="T-shirt"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-
-              {/* TITLE */}
-              <h2 className="font-semibold text-[16px] leading-snug text-black">
-                SLEEVE STRIPED T-SHIRT
-              </h2>
-
-              {/* RATING */}
-              <div className="flex items-center gap-2">
-                <Image src={star} alt="star" width={90} height={18} />
-                <p className="text-[14px] text-gray-600">4.5/5</p>
-              </div>
-
-              {/* PRICE */}
-              <h1 className="text-[22px] font-bold text-black">
-                $120
-              </h1>
-
-            </div>
-
           </div>
 
           <div className=" mt-10 text-center">
@@ -287,133 +288,47 @@ function HomePage() {
 
       <section className="py-20">
         <div className="conatainer mx-auto px-5">
-          <h1 className="text-black font-bold text-6xl text-center ">
+          <h1 className={` ${News.className} text-black font-bold text-3xl sm:text-4xl lg:text-6xl text-center `}>
             Top selling
           </h1>
 
-          <div className="grid grid-cols-4 gap-5 *:">
-            <div className="w-[280px] bg-white rounded-2xl shadow-md hover:shadow-xl transition p-4 space-y-3">
+          <div className="overflow-x-auto pb-4 md:overflow-x-visible md:pb-0">
+            <div className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-5 md:justify-items-center mt-8 w-min md:w-full">
+              {
+                data?.map((el) => (
+                  <div key={el.id} className="w-[280px] bg-white rounded-2xl shadow-md hover:shadow-xl transition p-4 space-y-3 flex-shrink-0">
 
-              {/* IMAGE */}
-              <div className="w-full h-[260px] relative rounded-xl overflow-hidden bg-gray-100">
-                <Image
-                  src={Fragment1}
-                  alt="T-shirt"
-                  fill
-                  className="object-cover"
-                />
-              </div>
+                    {/* IMAGE */}
+                    <div className="w-full h-[260px] relative rounded-xl overflow-hidden bg-gray-100">
+                      <Image
+                        src={el.image || Fragment1}
+                        alt="T-shirt"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
 
-              {/* TITLE */}
-              <h2 className="font-semibold text-[16px] leading-snug text-black">
-                T-SHIRT WITH TAPE DETAILS
-              </h2>
+                    {/* TITLE */}
+                    <h2 className="font-semibold text-[16px] leading-snug text-black">
+                      {el.name}
+                    </h2>
 
-              {/* RATING */}
-              <div className="flex items-center gap-2">
-                <Image src={star} alt="star" width={90} height={18} />
-                <p className="text-[14px] text-gray-600">4.5/5</p>
-              </div>
+                    {/* RATING */}
+                    <div className="flex items-center gap-2">
+                      <Image src={star} alt="star" width={90} height={18} />
+                      <p className="text-[14px] text-gray-600">4.5/5</p>
+                    </div>
 
-              {/* PRICE */}
-              <h1 className="text-[22px] font-bold text-black">
-                $120
-              </h1>
+                    {/* PRICE */}
+                    <h1 className="text-[22px] font-bold text-black">
+                      {el.price}
+                    </h1>
 
-            </div>
-
-            <div className="w-[280px] bg-white rounded-2xl shadow-md hover:shadow-xl transition p-4 space-y-3">
-
-              {/* IMAGE */}
-              <div className="w-full h-[260px] relative rounded-xl overflow-hidden bg-gray-100">
-                <Image
-                  src={Fragment2}
-                  alt="T-shirt"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-
-              {/* TITLE */}
-              <h2 className="font-semibold text-[16px] leading-snug text-black">
-                SKINNY FIT JEANS
-              </h2>
-
-              {/* RATING */}
-              <div className="flex items-center gap-2">
-                <Image src={star} alt="star" width={90} height={18} />
-                <p className="text-[14px] text-gray-600">4.5/5</p>
-              </div>
-
-              {/* PRICE */}
-              <h1 className="text-[22px] font-bold text-black">
-                $120
-              </h1>
+                  </div>
+                ))
+              }
 
             </div>
-
-
-            <div className="w-[280px] bg-white rounded-2xl shadow-md hover:shadow-xl transition p-4 space-y-3">
-
-              {/* IMAGE */}
-              <div className="w-full h-[260px] relative rounded-xl overflow-hidden bg-gray-100">
-                <Image
-                  src={Fragment3}
-                  alt="T-shirt"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-
-              {/* TITLE */}
-              <h2 className="font-semibold text-[16px] leading-snug text-black">
-                CHECKERED SHIRT
-              </h2>
-
-              {/* RATING */}
-              <div className="flex items-center gap-2">
-                <Image src={star} alt="star" width={90} height={18} />
-                <p className="text-[14px] text-gray-600">4.5/5</p>
-              </div>
-
-              {/* PRICE */}
-              <h1 className="text-[22px] font-bold text-black">
-                $120
-              </h1>
-
-            </div>
-
-
-            <div className="w-[280px] bg-white rounded-2xl shadow-md hover:shadow-xl transition p-4 space-y-3">
-
-              {/* IMAGE */}
-              <div className="w-full h-[260px] relative rounded-xl overflow-hidden bg-gray-100">
-                <Image
-                  src={Fragment4}
-                  alt="T-shirt"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-
-              {/* TITLE */}
-              <h2 className="font-semibold text-[16px] leading-snug text-black">
-                SLEEVE STRIPED T-SHIRT
-              </h2>
-
-              {/* RATING */}
-              <div className="flex items-center gap-2">
-                <Image src={star} alt="star" width={90} height={18} />
-                <p className="text-[14px] text-gray-600">4.5/5</p>
-              </div>
-
-              {/* PRICE */}
-              <h1 className="text-[22px] font-bold text-black">
-                $120
-              </h1>
-
-            </div>
-
           </div>
 
           <div className=" mt-10 text-center">
@@ -425,14 +340,14 @@ function HomePage() {
       </section>
 
       <section>
-        <div className="container mx-auto px-5 bg-gray-100 rounded-3xl grid grid-cols-1 py-[30px] ">
-          <div className="flex gap-6 justify-center ">
-            <div className="relative max-w-[500px] w-full h-80 group overflow-hidden rounded-lg shadow-lg">
+        <div className="container mx-auto px-5 bg-gray-100 rounded-3xl grid grid-cols-1 py-[30px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 justify-center">
+            <div className="relative w-full h-48 md:h-80 group overflow-hidden rounded-lg shadow-lg">
               {/* Rasm */}
               <Image src={Style1} alt="" className="w-full h-full object-cover" />
 
               {/* Hover yozuvi */}
-              <span className="absolute text-[30px] left-4 top-10 -translate-y-1/2 font-bold -translate-x-full text-black  bg-opacity-70 px-2 py-1 rounded opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+              <span className={` ${Prada.className}  absolute text-[20px] md:text-[30px] left-4 top-10 -translate-y-1/2 font-bold -translate-x-full text-black  bg-opacity-70 px-2 py-1 rounded opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300`}>
                 Casual
               </span>
             </div>
@@ -440,36 +355,36 @@ function HomePage() {
 
 
 
-            <div className="relative max-w-[700px] w-full h-80 group overflow-hidden rounded-lg shadow-lg">
+            <div className="relative w-full h-48 md:h-80 group overflow-hidden rounded-lg shadow-lg">
               {/* Rasm */}
               <Image src={Style2} alt="" className="w-full h-full object-cover" />
 
               {/* Hover yozuvi */}
-              <span className="absolute text-[30px] left-4 top-10 -translate-y-1/2 font-bold -translate-x-full text-black  bg-opacity-70 px-2 py-1 rounded opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+              <span className={` ${versachi.className}  absolute text-[20px] md:text-[30px] left-4 top-10 -translate-y-1/2 font-bold -translate-x-full text-black  bg-opacity-70 px-2 py-1 rounded opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300`}>
                 Formal
               </span>
             </div>
           </div>
 
 
-          <div className="flex gap-5 justify-center mt-[40px]">
-            <div className="relative max-w-[700px] w-full h-80 group overflow-hidden rounded-lg shadow-lg">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 justify-center mt-6 md:mt-[40px]">
+            <div className="relative w-full h-48 md:h-80 group overflow-hidden rounded-lg shadow-lg">
               {/* Rasm */}
               <Image src={Style3} alt="" className="w-full h-full object-cover" />
 
               {/* Hover yozuvi */}
-              <span className="absolute text-[30px] left-4 top-10 -translate-y-1/2 font-bold -translate-x-full text-black  bg-opacity-70 px-2 py-1 rounded opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+              <span className={` ${GUCCI.className}  absolute text-[20px] md:text-[30px] left-4 top-10 -translate-y-1/2 font-bold -translate-x-full text-black  bg-opacity-70 px-2 py-1 rounded opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300`}>
                 Party
               </span>
             </div>
 
 
-            <div className="relative max-w-[500px] w-full h-80 group overflow-hidden rounded-lg shadow-lg">
+            <div className="relative w-full h-48 md:h-80 group overflow-hidden rounded-lg shadow-lg">
               {/* Rasm */}
               <Image src={Style4} alt="" className="w-full h-full object-cover" />
 
               {/* Hover yozuvi */}
-              <span className="absolute text-[30px] left-4 top-10 -translate-y-1/2 font-bold -translate-x-full text-black  bg-opacity-70 px-2 py-1 rounded opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+              <span className="absolute text-[20px] md:text-[30px] left-4 top-10 -translate-y-1/2 font-bold -translate-x-full text-black  bg-opacity-70 px-2 py-1 rounded opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
                 Gym
               </span>
             </div>
@@ -489,10 +404,10 @@ function HomePage() {
 
       <section className="py-10">
         <div className="container mx-auto px-5">
-          
 
 
-          <div className=" flex gap-[30px] items-center  justify-center">
+
+          <div className="mundaraja grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-[30px] items-center justify-center">
             <div className="cart max-w-sm bg-white rounded-2xl shadow-lg p-6 flex flex-col space-y-4 hover:shadow-xl transition-shadow duration-300">
               {/* Foydalanuvchi rasmi */}
               <Image
@@ -509,8 +424,8 @@ function HomePage() {
 
               {/* Foydalanuvchi sharhi */}
               <p className="text-gray-600 text-sm leading-relaxed">
-                "I'm blown away by the quality and style of the clothes I received from Shop.co.
-                From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.”
+                Im blown away by the quality and style of the clothes I received from Shop.co.
+                From casual wear to elegant dresses, every piece Ive bought has exceeded my expectations.”
               </p>
             </div>
 
@@ -532,8 +447,8 @@ function HomePage() {
 
               {/* Foydalanuvchi sharhi */}
               <p className="text-gray-600 text-sm leading-relaxed">
-                "I'm blown away by the quality and style of the clothes I received from Shop.co.
-                From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.”
+                Im blown away by the quality and style of the clothes I received from Shop.co.
+                From casual wear to elegant dresses, every piece Ive bought has exceeded my expectations.”
               </p>
             </div>
 
@@ -558,8 +473,8 @@ function HomePage() {
 
               {/* Foydalanuvchi sharhi */}
               <p className="text-gray-600 text-sm leading-relaxed">
-                "I'm blown away by the quality and style of the clothes I received from Shop.co.
-                From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.”
+                Im blown away by the quality and style of the clothes I received from Shop.co.
+                From casual wear to elegant dresses, every piece Ive bought has exceeded my expectations.”
               </p>
             </div>
           </div>
@@ -567,12 +482,12 @@ function HomePage() {
 
 
 
-          
+
 
         </div>
       </section>
     </>
-    
+
   )
 }
 
