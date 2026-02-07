@@ -26,19 +26,19 @@ function Header() {
           </li>
 
           <li>
-            <Link className="text-sm text-black hover:text-orange-500 transition" href="/single">
+            <Link className="text-sm text-black" href="/single">
               On Sale
             </Link>
           </li>
 
           <li>
-            <Link className="text-sm text-black hover:text-orange-500 transition" href="/single">
+            <Link className="text-sm text-black " href="/single">
               New Arrivals
             </Link>
           </li>
 
           <li>
-            <Link className="text-sm text-black hover:text-orange-500 transition" href="/filter">
+            <Link className="text-sm text-black " href="/filter">
               Brands
             </Link>
           </li>
@@ -68,11 +68,11 @@ function Header() {
         <div className="flex items-center gap-3 md:gap-4">
           <Link href={"cart"}>
 
-            <IoCartOutline className="w-5 md:w-[26px] h-5 md:h-[26px] cursor-pointer hover:text-orange-500 transition" />
+            <IoCartOutline className="w-5 md:w-[26px] h-5 md:h-[26px] cursor-pointer " />
 
           </Link>
 
-          <IoPersonCircleOutline className="w-5 md:w-[28px] h-5 md:h-[28px] cursor-pointer hover:text-orange-500 transition" />
+          <IoPersonCircleOutline className="w-5 md:w-[28px] h-5 md:h-[28px] cursor-pointer " />
         </div>
 
       </div>

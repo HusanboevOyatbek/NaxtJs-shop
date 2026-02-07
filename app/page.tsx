@@ -5,15 +5,10 @@ import Style3 from "./assets/styleP3.png"
 import Style4 from "./assets/style4.png"
 import Reating from "./assets/reating.png"
 import Galichka from "./assets/galichka.png"
-import Fragment1 from "./assets/Frame 32 (1).png"
-import Fragment2 from "./assets/Frame 33.png"
-import Fragment3 from "./assets/Frame 34.png"
-import Fragment4 from "./assets/Frame 38.png"
 import topshop from "./assets/topShop.png"
-import star from "./assets/star.png"
 import Image from "next/image";
-import Link from "next/link"
 import { Bebas_Neue, Crimson_Text, Jaro, Noto_Sans_Inscriptional_Pahlavi, Noto_Sans_Psalter_Pahlavi, Oswald, Playfair_Display_SC, Playwrite_AU_NSW, Playwrite_AU_VIC_Guides, Playwrite_NZ, Playwrite_NZ_Guides, Playwrite_VN } from "next/font/google"
+import HomeCart from "./components/home-carts/HomeCart"
 
 
 
@@ -21,36 +16,7 @@ import { Bebas_Neue, Crimson_Text, Jaro, Noto_Sans_Inscriptional_Pahlavi, Noto_S
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////
-const data = [
-  {
-    image: Fragment1,
-    name: "T-SHIRT WITH TAPE DETAILS",
-    price: 120,
-    id: 1
 
-  },
-  {
-    image: Fragment2,
-    name: "SKINNY FIT JEANS",
-    price: 120,
-    id: 2
-
-  },
-  {
-    image: Fragment3,
-    name: "CHECKERED SHIRT",
-    price: 120,
-    id: 3
-
-  },
-  {
-    image: Fragment4,
-    name: "SLEEVE STRIPED T-SHIRT",
-    price: 120,
-    id: 4
-
-  },
-]
 
 
 
@@ -58,7 +24,7 @@ const data = [
 const zealand = Oswald({
   weight: "700",
   subsets: ["latin"]
-  
+
 })
 
 
@@ -98,9 +64,53 @@ const News = Bebas_Neue({
 
 })
 
+type productType = {
+  "id": number
+  "title": string,
+  "price": number,
+  "description": string,
+  "category": string,
+  "image": string,
+  "rating": {
+    "rate": number,
+    "count": number
+  }
+}
+
 
 /////////////////////////////////////////////
-function HomePage() {
+const HomePage =  async() => {
+
+  const getData = async () => {
+    const res = await fetch("https://fakestoreapi.com/products" , {
+      next:{
+        revalidate: 3600
+      }
+    });
+    const data = await res.json();
+
+    return data
+
+  };
+
+  const res = await getData()
+
+const categoryData:string[] = res?.map((el:productType) => {
+  return el.category
+});
+
+const categories:string[] = [... new Set(categoryData)]
+
+console.log(categories);
+
+
+console.log(categoryData);
+
+
+
+
+
+
   return (
     <>
       <section>
@@ -234,48 +244,30 @@ function HomePage() {
 
       <section className="py-20">
         <div className="conatainer mx-auto px-5">
-          <h1 className={` ${News.className} text-black font-bold text-3xl sm:text-4xl lg:text-6xl text-center `}>
-            NEW ARRIVALS
-          </h1>
+         {
+          categories?.map((el1 , i) =>{
 
-          <div className="overflow-x-auto pb-4 md:overflow-x-visible md:pb-0">
-            <div className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-5 md:justify-items-center mt-8 w-min md:w-full">
-              {
-                data?.map((el) => (
-                  <Link href={`/products/${el.id}`} key={el.id} className="w-[280px] bg-white rounded-2xl shadow-md hover:shadow-xl transition p-4 space-y-3 flex-shrink-0">
+          return (
+            <div key={i} className="overflow-x-auto pb-4 md:overflow-x-visible md:pb-0">
+              <h1 className={` ${News.className} mt-5  text-black font-bold text-3xl sm:text-4xl lg:text-6xl text-center `}>
+               {
+                el1
+               }
+              </h1>
+              <div className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-5 md:justify-items-center mt-8 w-min md:w-full">
+                {
+                  res?.filter((item:productType) => item.category === el1)?.map((el: productType) => (
+                    <HomeCart key={el.id} {...el} />
+                  ))
+                }
 
-                    {/* IMAGE */}
-                    <div className="w-full h-[260px] relative rounded-xl overflow-hidden bg-gray-100">
-                      <Image
-                        src={el.image || Fragment1}
-                        alt="T-shirt"
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-
-                    {/* TITLE */}
-                    <h2 className="font-semibold text-[16px] leading-snug text-black">
-                      {el.name}
-                    </h2>
-
-                    {/* RATING */}
-                    <div className="flex items-center gap-2">
-                      <Image src={star} alt="star" width={90} height={18} />
-                      <p className="text-[14px] text-gray-600">4.5/5</p>
-                    </div>
-
-                    {/* PRICE */}
-                    <h1 className="text-[22px] font-bold text-black">
-                      {el.price}
-                    </h1>
-
-                  </Link>
-                ))
-              }
-
+              </div>
             </div>
-          </div>
+          )
+          })
+         }
+
+          
 
           <div className=" mt-10 text-center">
             <button className="rounded-[62px] cursor-pointer border-1 p-[10px] w-[200px] font-bold">
@@ -295,37 +287,37 @@ function HomePage() {
           <div className="overflow-x-auto pb-4 md:overflow-x-visible md:pb-0">
             <div className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-5 md:justify-items-center mt-8 w-min md:w-full">
               {
-                data?.map((el) => (
-                  <div key={el.id} className="w-[280px] bg-white rounded-2xl shadow-md hover:shadow-xl transition p-4 space-y-3 flex-shrink-0">
+                // data?.map((el) => (
+                //   <div key={el.id} className="w-[280px] bg-white rounded-2xl shadow-md hover:shadow-xl transition p-4 space-y-3 flex-shrink-0">
 
-                    {/* IMAGE */}
-                    <div className="w-full h-[260px] relative rounded-xl overflow-hidden bg-gray-100">
-                      <Image
-                        src={el.image || Fragment1}
-                        alt="T-shirt"
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
+                //     {/* IMAGE */}
+                //     <div className="w-full h-[260px] relative rounded-xl overflow-hidden bg-gray-100">
+                //       <Image
+                //         src={el.image || Fragment1}
+                //         alt="T-shirt"
+                //         fill
+                //         className="object-cover"
+                //       />
+                //     </div>
 
-                    {/* TITLE */}
-                    <h2 className="font-semibold text-[16px] leading-snug text-black">
-                      {el.name}
-                    </h2>
+                //     {/* TITLE */}
+                //     <h2 className="font-semibold text-[16px] leading-snug text-black">
+                //       {el.name}
+                //     </h2>
 
-                    {/* RATING */}
-                    <div className="flex items-center gap-2">
-                      <Image src={star} alt="star" width={90} height={18} />
-                      <p className="text-[14px] text-gray-600">4.5/5</p>
-                    </div>
+                //     {/* RATING */}
+                //     <div className="flex items-center gap-2">
+                //       <Image src={star} alt="star" width={90} height={18} />
+                //       <p className="text-[14px] text-gray-600">4.5/5</p>
+                //     </div>
 
-                    {/* PRICE */}
-                    <h1 className="text-[22px] font-bold text-black">
-                      {el.price}
-                    </h1>
+                //     {/* PRICE */}
+                //     <h1 className="text-[22px] font-bold text-black">
+                //       {el.price}
+                //     </h1>
 
-                  </div>
-                ))
+                //   </div>
+                // ))
               }
 
             </div>

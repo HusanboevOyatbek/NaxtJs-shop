@@ -1,15 +1,30 @@
-"use client"
 import Image from "next/image";
-import Fudboka from "../../assets/singelimg.png"
 import Starr from "../../assets/star.png"
 
 
 
+const SinglePage = async ({
+  params
+}: {
+  params: Promise<{ singelId: number }>
+}) => {
 
-function SinglePAge() {
+  const { singelId } = await params;
+
+
+  const singData = await fetch(`https://fakestoreapi.com/products/${singelId}`)
+
+  const res = await singData.json()
+  console.log(res);
+
+
   return (
-    <>
+
+
+
+    <div className="">
       <section>
+
         <div className="min-h-screen bg-neutral-50">
           <div className="max-w-7xl mx-auto px-6 py-12">
             <div className="grid md:grid-cols-2 gap-14">
@@ -17,8 +32,14 @@ function SinglePAge() {
               {/* Left Side - Product Images */}
               <div className="space-y-4">
                 <div className="aspect-square bg-neutral-100 rounded-2xl overflow-hidden border border-neutral-200 shadow-sm">
-                  <Image className="w-full h-full object-cover hover:scale-105 transition"
-                    src={Fudboka} alt="" />
+                  <Image
+                    src={res.image}
+                    alt={res.title}
+                    width={500}
+                    height={500}
+                    className="w-full h-full object-fill hover:scale-105 transition"
+                  />
+
                 </div>
               </div>
 
@@ -26,27 +47,28 @@ function SinglePAge() {
               <div className="space-y-7">
                 <div>
                   <h1 className="text-4xl font-bold text-neutral-900 mb-3">
-                    ONE LIFE GRAPHIC T-SHIRT
+                    {res.title }
                   </h1>
+
+                  
 
                   <div className="flex items-center gap-3 mb-4">
                     <div className="flex">
-                        <Image src={Starr} alt=""  className="w-[120px]" />
+                      <Image src={Starr} alt="" className="w-[120px]" />
                     </div>
                     <span className="text-neutral-500 text-sm">4.5/5</span>
                   </div>
 
                   <div className="flex items-center gap-4">
-                    <span className="text-3xl font-bold text-neutral-900">$260</span>
-                    <span className="text-xl text-neutral-400 line-through">$300</span>
-                    <span className="bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm font-semibold">
-                      -40%
-                    </span>
+                    <span className="text-3xl font-bold text-neutral-900">$ {res.price}</span>
+
                   </div>
                 </div>
 
                 <p className="text-neutral-600 leading-relaxed">
-                  This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.
+                {
+                    res.description
+                }
                 </p>
 
                 {/* Color Selection */}
@@ -98,7 +120,7 @@ function SinglePAge() {
 
 
 
-        
+
       </section>
 
 
@@ -169,7 +191,7 @@ function SinglePAge() {
                 >
                   {/* Stars */}
                   <div className="flex gap-1 mb-4">
-                    <Image src={Starr} alt=""  className="w-[100px]" />
+                    <Image src={Starr} alt="" className="w-[100px]" />
 
                   </div>
 
@@ -218,7 +240,7 @@ function SinglePAge() {
               <div className="flex-shrink-0 w-[280px] bg-white rounded-2xl shadow-md hover:shadow-xl transition p-4 space-y-3">
                 {/* IMAGE */}
                 <div className="w-full h-[260px] rounded-xl overflow-hidden bg-gray-100">
-                  <Image src={Fudboka} alt="" />
+                  <Image src={Starr} alt="" />
 
                 </div>
 
@@ -230,7 +252,7 @@ function SinglePAge() {
                 {/* RATING */}
                 <div className="flex items-center gap-2">
                   <div className="flex gap-1">
-                    <Image src={Starr} alt=""/>
+                    <Image src={Starr} alt="" />
                   </div>
                   <p className="text-[14px] text-gray-600">4.5/5</p>
                 </div>
@@ -245,7 +267,7 @@ function SinglePAge() {
               <div className="flex-shrink-0 w-[280px] bg-white rounded-2xl shadow-md hover:shadow-xl transition p-4 space-y-3">
                 {/* IMAGE */}
                 <div className="w-full h-[260px] rounded-xl overflow-hidden bg-gray-100">
-                  <Image src={Fudboka} alt="" />
+                  <Image src={Starr} alt="" />
 
                 </div>
 
@@ -273,7 +295,7 @@ function SinglePAge() {
               <div className="flex-shrink-0 w-[280px] bg-white rounded-2xl shadow-md hover:shadow-xl transition p-4 space-y-3">
                 {/* IMAGE */}
                 <div className="w-full h-[260px] rounded-xl overflow-hidden bg-gray-100">
-                  <Image src={Fudboka} alt="" />
+                  <Image src={Starr} alt="" />
 
                 </div>
 
@@ -301,7 +323,7 @@ function SinglePAge() {
               <div className="flex-shrink-0 w-[280px] bg-white rounded-2xl shadow-md hover:shadow-xl transition p-4 space-y-3">
                 {/* IMAGE */}
                 <div className="w-full h-[260px] rounded-xl overflow-hidden bg-gray-100">
-                  <Image src={Fudboka} alt="" />
+                  <Image src={Starr} alt="" />
 
                 </div>
 
@@ -328,9 +350,12 @@ function SinglePAge() {
               <div className="flex-shrink-0 w-[280px] bg-white rounded-2xl shadow-md hover:shadow-xl transition p-4 space-y-3">
                 {/* IMAGE */}
                 <div className="w-full h-[260px] rounded-xl overflow-hidden bg-gray-100">
-                  <Image 
-                  src={Fudboka} alt=""
-                    className="w-full h-full object-cover"
+                  <Image
+                    src={res.image}
+                    alt={res.title}
+                    width={500}
+                    height={500}
+                    className="w-full h-full object-cover hover:scale-105 transition"
                   />
                 </div>
 
@@ -357,23 +382,14 @@ function SinglePAge() {
           </div>
 
           {/* Custom Scrollbar Hide CSS */}
-          <style jsx>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
+
         </div>
 
       </section>
 
-    </>
+    </div>
 
-    
   );
 }
 
-export default SinglePAge;
+export default SinglePage;
