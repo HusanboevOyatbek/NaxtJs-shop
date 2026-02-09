@@ -1,8 +1,12 @@
+"use client"
+import { useCartStore } from "@/app/store/useCartStore"
 import Link from "next/link"
 import { IoMdSearch } from "react-icons/io"
 import { IoCartOutline, IoPersonCircleOutline } from "react-icons/io5"
 
 function Header() {
+    const cart = useCartStore((state) => state.cart)
+  
   return (
     <header className="fixed top-0 left-0 w-full bg-white shadow-sm z-50">
       <div className="container mx-auto px-5 h-[60px] md:h-[80px] flex items-center justify-between gap-3 md:gap-6">
@@ -66,11 +70,36 @@ function Header() {
 
         {/* ICONS */}
         <div className="flex items-center gap-3 md:gap-4">
-          <Link href={"cart"}>
+          <Link href="/cart" className="relative inline-block">
+            {/* Badge */}
+            <span
+              className="
+      absolute 
+      -top-1 
+      -right-1 
+      min-w-[18px] 
+      h-[18px]
+      px-[5px]
+      bg-black 
+      text-white 
+      text-[11px] 
+      font-semibold
+      rounded-full 
+      flex 
+      items-center 
+      justify-center
+      leading-none
+    "
+            >
+              {cart?.length}
+            </span>
 
-            <IoCartOutline className="w-5 md:w-[26px] h-5 md:h-[26px] cursor-pointer " />
-
+            {/* Cart Icon */}
+            <IoCartOutline
+              className="w-5 md:w-[26px] h-5 md:h-[26px] cursor-pointer"
+            />
           </Link>
+
 
           <IoPersonCircleOutline className="w-5 md:w-[28px] h-5 md:h-[28px] cursor-pointer " />
         </div>

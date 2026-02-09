@@ -232,12 +232,14 @@ console.log(categoryData);
 
 
       <section>
-        <div className="bg-black py-6 flex flex-wrap justify-center md:justify-around items-center gap-3 md:gap-0">
-          <div className={`${versachi.className} text-white font-bold text-lg md:text-3xl uppercase`}>VERSACE</div>
-          <div className={`${Zara.className} text-white text-lg md:text-3xl uppercase`}>ZARA</div>
-          <div className={`${GUCCI.className} text-white text-lg md:text-3xl uppercase`}>GUCCI</div>
-          <div className={`${Prada.className} text-white text-lg md:text-3xl uppercase`}>PRADA</div>
-          <div className={`${Calvi.className} text-white text-lg md:text-3xl uppercase`}>Calvin Klein</div>
+        <div className="conatainer mx-auto">
+          <div className=" bg-black py-6 flex flex-wrap justify-center md:justify-around items-center gap-3 md:gap-0">
+            <div className={`${versachi.className} text-white font-bold text-lg md:text-3xl uppercase`}>VERSACE</div>
+            <div className={`${Zara.className} text-white text-lg md:text-3xl uppercase`}>ZARA</div>
+            <div className={`${GUCCI.className} text-white text-lg md:text-3xl uppercase`}>GUCCI</div>
+            <div className={`${Prada.className} text-white text-lg md:text-3xl uppercase`}>PRADA</div>
+            <div className={`${Calvi.className} text-white text-lg md:text-3xl uppercase`}>Calvin Klein</div>
+          </div>
         </div>
       </section>
 
@@ -248,7 +250,7 @@ console.log(categoryData);
           categories?.map((el1 , i) =>{
 
           return (
-            <div key={i} className="overflow-x-auto pb-4 md:overflow-x-visible md:pb-0">
+            <div key={i} className="container mx-auto overflow-x-auto pb-4 md:overflow-x-visible md:pb-0">
               <h1 className={` ${News.className} mt-5  text-black font-bold text-3xl sm:text-4xl lg:text-6xl text-center `}>
                {
                 el1
@@ -278,58 +280,7 @@ console.log(categoryData);
       </section>
 
 
-      <section className="py-20">
-        <div className="conatainer mx-auto px-5">
-          <h1 className={` ${News.className} text-black font-bold text-3xl sm:text-4xl lg:text-6xl text-center `}>
-            Top selling
-          </h1>
-
-          <div className="overflow-x-auto pb-4 md:overflow-x-visible md:pb-0">
-            <div className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-5 md:justify-items-center mt-8 w-min md:w-full">
-              {
-                // data?.map((el) => (
-                //   <div key={el.id} className="w-[280px] bg-white rounded-2xl shadow-md hover:shadow-xl transition p-4 space-y-3 flex-shrink-0">
-
-                //     {/* IMAGE */}
-                //     <div className="w-full h-[260px] relative rounded-xl overflow-hidden bg-gray-100">
-                //       <Image
-                //         src={el.image || Fragment1}
-                //         alt="T-shirt"
-                //         fill
-                //         className="object-cover"
-                //       />
-                //     </div>
-
-                //     {/* TITLE */}
-                //     <h2 className="font-semibold text-[16px] leading-snug text-black">
-                //       {el.name}
-                //     </h2>
-
-                //     {/* RATING */}
-                //     <div className="flex items-center gap-2">
-                //       <Image src={star} alt="star" width={90} height={18} />
-                //       <p className="text-[14px] text-gray-600">4.5/5</p>
-                //     </div>
-
-                //     {/* PRICE */}
-                //     <h1 className="text-[22px] font-bold text-black">
-                //       {el.price}
-                //     </h1>
-
-                //   </div>
-                // ))
-              }
-
-            </div>
-          </div>
-
-          <div className=" mt-10 text-center">
-            <button className="rounded-[62px] cursor-pointer border-1 p-[10px] w-[200px] font-bold">
-              View All
-            </button>
-          </div>
-        </div>
-      </section>
+      
 
       <section>
         <div className="container mx-auto px-5 bg-gray-100 rounded-3xl grid grid-cols-1 py-[30px]">
